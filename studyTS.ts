@@ -72,25 +72,25 @@
 
 
 
-isFirstLetterBig = (text: string): string => {
-    if (text === '') {
-        return '';
-    }
+// const isFirstLetterBig = (text: string): string => {
+//     if (text === '') {
+//         return '';
+//     }
 
-    if (text[0] === text[0].toUpperCase()) {
-        return text;
-    } else {
-        return `${text[0].toUpperCase()}${text.slice(1)}`
-    }
-}
+//     if (text[0] === text[0].toUpperCase()) {
+//         return text;
+//     } else {
+//         return `${text[0].toUpperCase()}${text.slice(1)}`
+//     }
+// }
 
-console.log(isFirstLetterBig('name'));
-
-
+// console.log(isFirstLetterBig('name'));
 
 
 
-// const isJob = (job) => {
+
+
+// const isJob = (job: string): string => {
 //     if (job === 'processing') {
 //         return 'Делаем раз'
 //     } else if (job === 'paid') {
@@ -107,7 +107,7 @@ console.log(isFirstLetterBig('name'));
 
 
 
-// const jobH = (job) => {
+// const jobH = (job: string): string => {
 //     switch (job) {
 //         case 'processing': // status === 'processing' (строгое соответствие)
 //             return 'Делаем раз'
@@ -120,25 +120,29 @@ console.log(isFirstLetterBig('name'));
 //     }
 // }
 
-// console.log(jobH('ndew'));
+// console.log(jobH('new'));
 
 
 
 
-// const printNumbers = (initialNumber) => {
-//     let lasCount = 1;
+// const printNumbers = (initialNumber: number): void => {
+//     let lastCount = 1;
 
-//     while (initialNumber >= lasCount) {
+//     while (initialNumber >= lastCount) {
 //         console.log(initialNumber)
-//         initialNumber -= lasCount;
+//         initialNumber -= lastCount;
 //     }
 //     console.log('finished');
 // }
 
-// printNumbers(4);
+// printNumbers(10);
 
 
-// const sumNumbersFromRange = (start, finish) => {
+
+
+
+
+// const sumNumbersFromRange = (start: number, finish: number): number => {
 //     // Технически можно менять start
 //     // Но входные аргументы нужно оставлять в исходном значении
 //     // Это сделает код проще для анализа
@@ -146,20 +150,20 @@ console.log(isFirstLetterBig('name'));
 //     let sum = 0; // Инициализация суммы
 
 //     while (count <= finish) { // Двигаемся до конца диапазона
-//         sum = sum + count; // Считаем сумму для каждого числа
-//         count = count + 1; // Переходим к следующему числу в диапазоне
+//         sum += count; // Считаем сумму для каждого числа
+//         count += 1; // Переходим к следующему числу в диапазоне
 //     }
 
 //     // Возвращаем получившийся результат
 //     return sum;
 // };
 
-// console.log(sumNumbersFromRange(1, 3));
+// console.log(sumNumbersFromRange(1, 5));
 
 
 
 
-// const multiplyNumbersFromRange = (start, finish) => {
+// const multiplyNumbersFromRange = (start: number, finish: number): number => {
 //     let count = start;
 //     let multiply = 1;
 
@@ -171,11 +175,11 @@ console.log(isFirstLetterBig('name'));
 // }
 
 // console.log(multiplyNumbersFromRange(1,3));
+``
 
 
 
-
-// function joinNumbersFromRange(num1, num2) {
+// function joinNumbersFromRange(num1: number, num2: number): string {
 //     let startCount = num1;
 //     let string = '';
 
@@ -192,7 +196,7 @@ console.log(isFirstLetterBig('name'));
 
 
 
-// const mySubstr = (text, textLength) => {
+// const mySubstr = (text: string, textLength: number): string => {
 //     let string = '';
 //     let index = 0;
 //     while (index < textLength) {
@@ -208,16 +212,17 @@ console.log(isFirstLetterBig('name'));
 
 
 
-// const countChars = (str, char) => {
-//     let i = 0;
+// const countChars = (text: string, char: string): number => {
+//     let index = 0;
 //     let count = 0;
-//     while (i < str.length) {
-//         if (str[i] === char) {
+//     while (index < text.length) {
+
+//         if (text[index] === char) {
 //             // Считаем только подходящие символы
 //             count = count + 1;
 //         }
 //         // Счетчик увеличивается в любом случае
-//         i = i + 1;
+//         index += 1;
 //     }
 
 //     return count;
@@ -228,7 +233,7 @@ console.log(isFirstLetterBig('name'));
 
 
 
-// const isPrime = (number) => {
+// const isPrime = (number: number): boolean => {
 //     if (number < 2) {
 //         return false;
 //     }
@@ -249,14 +254,17 @@ console.log(isFirstLetterBig('name'));
 // console.log(isPrime(2));
 
 
-// const countChars = (text, letter) => {
+
+
+
+// const countChars = (text: string, char: string) => {
 //     const newText = text.toUpperCase();
-//     const newLetter = letter.toUpperCase();
+//     const newChar = char.toUpperCase();
 //     let i = 0;
 //     let count = 0;
 
 //     while (i < newText.length) {
-//         if (newText[i] === newLetter) {
+//         if (newText[i] === newChar) {
 //             count += 1;
 //         }
 //         i += 1;
@@ -268,24 +276,26 @@ console.log(isFirstLetterBig('name'));
 
 
 
-// let num = 0;
+
+
+// let num: number = 0;
 // console.log(num++);
 // console.log(num);
 
 // console.log('');
 
-// let num2 = 0;
+// let num2: number = 0;
 // console.log(++num2);
 // console.log(num2);
 
 
 
 
-// const str = 'HELLO';
-// let result = '';
-// let i = 0;
+// const str: string = 'HELLO';
+// let result: string = '';
+// let i: number = 0;
 // while (i < str.length) {
-//     const current = str[i];
+//     const current: string = str[i];
 //     ++i;
 //     result = `${result}${current.toLowerCase()}`
 //     i++;
@@ -295,14 +305,14 @@ console.log(isFirstLetterBig('name'));
 
 
 
-// const makeItFunny = (text, numberOfCharToUpCase) => {
+// const makeItFunny = (text: string, numberOfCharToUpCase: number): string => {
 
-//     let result = '';
-//     let index = 0;
+//     let result: string = '';
+//     let index: number = 0;
 
 //     while (index < text.length) {
 
-//         const current = text[index];
+//         const current: string = text[index];
 
 //         if ((index + 1) % numberOfCharToUpCase === 0) {
 //             result += current.toUpperCase();
@@ -318,10 +328,13 @@ console.log(isFirstLetterBig('name'));
 
 
 
-// const reverseString = (str) => {
-//     let result = '';
-//     for (let i = 0; i < str.length; i ++) {
-//         result = `${str[i]}${result}`;
+
+
+// const reverseString = (text: string): string => {
+//     let result: string = '';
+
+//     for (let i = 0; i < text.length; i ++) {
+//         result = `${text[i]}${result}`;
 //     }
 
 //     return result;
@@ -334,29 +347,36 @@ console.log(isFirstLetterBig('name'));
 
 
 
-// const encrypt = (str) => {
-//     let result = '';
-//     for (let i = 0; i < str.length; i += 2) {
-//         const nextSymbol = str[i + 1] || '';
-//         result = `${result}${nextSymbol}${str[i]}`;
+// const encrypt = (text: string): string => {
+//     let result: string = '';
+//     for (let i = 0; i < text.length; i += 3) {
+//         const nextSymbol = text[i + 1] || '';
+//         result = `${result}${nextSymbol}${text[i]}`;
 //     }
 
 //     return result;
 // };
 
+// console.log(encrypt('hello'));
 
 
-// function getTriangleArea(h, b) {
-//     return 1 / 2 * h * b;
+
+
+
+// function getTriangleArea(a: number, b: number): number {
+//     return 1 / 2 * a * b;
 // };
 
 // console.log(getTriangleArea(5, 10));
 
-// function func(n) {
+
+// function func(n: number): number {
 //     return getTriangleArea(n, n ** 2 / 2);
 // };
 
 // console.log(func(4));
+
+
 
 
 
@@ -2290,7 +2310,7 @@ gr1.delete()
 console.log(gr1);
 
 console.log(gr1.has(23));
- * 
+ *
  */
 
 
@@ -2302,7 +2322,7 @@ let map = { one: true, two: true, hasOwnProperty: true };
 
 console.log(Object.prototype.hasOwnProperty.call(map, "two"));
 // → true
- * 
+ *
  */
 
 
@@ -3212,7 +3232,7 @@ const randomArr = (arrLength) => {
     for (let i = 0; i <= arrLength; i++) {
         arr.push(Math.floor(Math.random() * 10) + 1)
     }
-    
+
     return arr;
 };
 
@@ -3287,13 +3307,13 @@ const func = (obj) => {
     // objValues.forEach(val => {
     //     console.log(val);
     // });
-    
+
     // console.log(objValues);
 
     func(numbers)
 
-   
-    
+
+
     // let objValues = Object.values(numbers);
     // console.log(objValues);
     // let findVal = objValues.filter(val => val >= 3);
