@@ -494,11 +494,13 @@ if (a % 2 === 0) {
 Число кратно 12.
 
 for (let i = 0; i < 1001; i++) {
-    if (i % 2 === 0 || i % 12 === 0) {
+    if (i % 2 !== 0 || i % 12 === 0) {
         console.log(i);
     }
 }
 */
+
+
 
 
 
@@ -551,21 +553,30 @@ const sayHello = (name = 'someone') => `Hello ${name}!`;
 
 Напишите функцию calc(), которая принимает в параметры a и b, а также operation. В зависимости от переданной операции (+, -, /, *) возвращаем необходимый результат выражения с числами.
 
-const calc = (a, b, operation) => {
-    switch (operation) {
-        case '+':
-            return a + b;
-        case '-':
-            return a - b;
-        case '/':
-            return a / b;
-        case '*':
-            return a * b;
-        default:
-            break
+const calc = (a: number, b: number, operation: string): number | undefined => {
+    if (operation !== '+' && operation !== '-' && operation !== '*' && operation !== '/') {
+        throw new Error("оператор должен быть указан!");
+    } else {
+        switch (operation) {
+            case '+':
+                return a + b;
+            case '-':
+                return a - b;
+            case '/':
+                return a / b;
+            case '*':
+                return a * b;
+            default:
+                break
+        }
     }
 };
+
+console.log(calc(2, 4, 'd'));
 */
+
+
+
 
 
 
@@ -638,30 +649,59 @@ for (const key in john) {
 
 Создайте функцию, которая на вход принимает массив, а на выходе возвращает сумму его элементов:
 
-const arr = [1, 2, 3, 4, 5];
-
 // через for
-const sumArr = (arr) => {
-    let sum = 0;
-    for (let i = 0; i < arr.length; i++) {
-        sum += arr[i];
-    }
-    return sum;
-};
+// const sumArr = (arr: number[]): number => {
+//     let sum: number = 0;
+
+//     for (let i = 0; i < arr.length; i++) {
+//         sum += arr[i];
+//     }
+//     return sum;
+// };
+
+// console.log(sumArr([1,2,3,4,5]));
 
 // через for in
-const sumArr = (array) => {
-    let sum = 0;
-    for (const i of array) {
-        sum += i;
-    }
-    return sum;
-};
+// const sumArr = (array: number[]): number => {
+//     let sum: number = 0;
 
-console.log(sumArr(arr));
+//     for (const i of array) {
+//         sum += i;
+//     }
+//     return sum;
+// };
+
+// console.log(sumArr([1, 2, 3, 4, 5, 6]));
 
 
 */
+
+
+
+
+
+
+/** Найдите сумму всех чисел меньше 1000, кратных 3 или 5.
+ * 
+ const sumFunc = (number: number): number => {
+ 
+     let sum: number = 0;
+ 
+     for (let index = 0; index < number; index++) {
+         if (index % 3 === 0 || index % 5 === 0) {
+             sum += index;
+         }
+     }
+     return sum;
+ }
+ 
+ console.log(sumFunc(7));
+ * 
+ */
+
+
+
+
 
 
 
@@ -670,13 +710,18 @@ console.log(sumArr(arr));
 
 Создайте пустой массив names. Добавьте в него 5 любых имен. Выведите массив в консоль. Уберите из начала и конца массива по 1 элементу. Снова выведите массив в консоль.
 
-const names = ['Alex', 'Kaleb', 'Jack', 'Jill', 'Kyle'];
+const names: string[] = ['Alex', 'Kaleb', 'Jack', 'Jill', 'Kyle'];
 console.log(names);
 
 names.pop();
 names.shift()
 console.log(names);
 */
+
+
+
+
+
 
 /*
 Задание #4
@@ -685,7 +730,7 @@ console.log(names);
 
 const names = ['Bob', 'Klar', 'Petya', 'Ilya', 'Viktoriya'];
 
-const func = (array) => {
+const func = (array: string[]): void => {
     let list = document.createElement('ul');
     array.forEach(element => {
         let li = document.createElement('li');
@@ -695,8 +740,11 @@ const func = (array) => {
 };
 
 // второй простой способ через map
-const render = names => `<ul>${names.map(item => `<li>${item}</li>`).join('')}</ul>`;
+const render = (names: string[]): string => `<ul>${names.map(item => `<li>${item}</li>`).join('')}</ul>`;
 */
+
+
+
 
 
 
@@ -726,6 +774,33 @@ const obj = {
 const { age, favColor, height, pet, money } = obj;
 console.log(age, favColor, height, pet, money);
 */
+
+
+
+
+const obj = {
+    age: 22,
+    favColor: 'red',
+    height: 188,
+    pet: 'dog',
+    money: 12300
+}
+
+// Необходимо выполнить деструктуризацию объекта(для всех полей).Выведите полученные переменные в консоль.
+
+const obj = {
+    age: 22,
+    favColor: 'red',
+    height: 188,
+    pet: 'dog',
+    money: 12300
+}
+
+const { age, favColor, height, pet, money } = obj;
+console.log(age, favColor, height, pet, money);
+
+
+
 
 
 /*

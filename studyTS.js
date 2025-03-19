@@ -221,13 +221,315 @@
 //     return result;
 // };
 // console.log(encrypt('hello'));
-function getTriangleArea(a, b) {
-    return 1 / 2 * a * b;
+// function getTriangleArea(a: number, b: number): number {
+//     return 1 / 2 * a * b;
+// };
+// console.log(getTriangleArea(5, 10));
+// function func(n: number): number {
+//     return getTriangleArea(n, n ** 2 / 2);
+// };
+// console.log(func(4));
+/*
+Задание #3
+
+Необходимо написать программу, в которой нужно определить переменные (указать для них свои значения):
+productName — название товара.
+productPrice — стоимость.
+productQuantity — количество купленного товара.
+resultCost — итоговая стоимость (высчитать динамически, с учетом цены и количества товара).
+Выведите в консоль строку, в которой на месте фигурных скобок будут соответствующие значения переменных:
+“Вы купили {productName} ({productQuantity} шт.) по {productPrice} ₽. Всего было потрачено: {resultCost} ₽”.
+
+const productName = 'Яблоко';
+const productPrice = 50;
+const productQuantity = 10;
+const resultCost = productPrice * productQuantity;
+
+console.log(`“Вы купили ${productName} (${productQuantity} шт.) по ${productPrice} ₽. Всего было потрачено: ${resultCost} ₽”`);
+*/
+/*
+Задание #4
+
+Выведите в консоль следующие выражения:
+typeof 'Hello'
+typeof 10
+typeof {}
+typeof null
+typeof undefined
+typeof true
+typeof []
+typeof (() => {})
+Проанализируйте результат выполнения программы и определите для себя, почему произошел тот или иной вывод.
+
+console.log(typeof 'Hello');
+console.log(typeof 10);
+console.log(typeof {});
+console.log(typeof null);
+console.log(undefined);
+console.log(typeof true);
+console.log(typeof []);
+console.log(typeof (() => {}));
+*/
+/*
+Задание #5
+
+Выведите в консоль следующие выражения:
+10 == 10
+10 != 10
+12 == 'Привет'
+10 < 11
+12 > 20
+true && true
+true && false
+false && true
+false || true
+true || false
+true || true
+10 <= 10
+18 <= 20
+50 >= 50
+51 >= 50
+{} === {}
+{} == {}
+*/
+/*
+Задание #6
+
+Создайте переменную a и b, присвойте им любые числа. Если a больше b, выведите в консоль true, иначе — false.
+P. S. Нельзя использовать if...else и тернарный оператор.
+
+const a = 4;
+const b = 6;
+
+console.log(a > b);
+*/
+/*
+Задание #1
+
+Создайте переменную a, присвоив в нее любое число.
+Если значение переменной четное, выведите в консоль “Четное”.
+Если значение переменной нечетное:
+Выведите обновленное значение a.
+Прибавьте к a + 1.
+выведите в консоль “Нечетное”.
+
+const a = 4;
+if (a % 2 === 0) {
+    console.log('Четное');
+} else {
+    console.log('Нечетное');
 }
-;
-console.log(getTriangleArea(5, 10));
-function func(n) {
-    return getTriangleArea(n, Math.pow(n, 2) / 2);
+*/
+/*
+Задание #2
+
+Напишите программу, которая последовательно выводит числа в диапазоне [0, 1000], удовлетворяющие одному из условий:
+Число нечетное.
+Число кратно 12.
+
+for (let i = 0; i < 1001; i++) {
+    if (i % 2 !== 0 || i % 12 === 0) {
+        console.log(i);
+    }
 }
-;
-console.log(func(4));
+*/
+/*
+Задание #3
+
+Создайте массив со значениями [1, 10, 15, -100, -23, 19, 15032].
+Получите из него новый массив, в котором каждый элемент будет увеличен на 25%.
+Выведите оба массива в консоль.
+
+// Первый вариант через map
+const arr = [1, 10, 15, -100, -23, 19, 15032];
+const arr2 = arr.slice().map(item => item * 1.25);
+
+console.log(arr);
+console.log(arr2);
+
+// Второй вариант через for of
+const arr = [1, 10, 15, -100, -23, 19, 15032];
+const arr2 = [];
+
+for(const element of arr) {
+    arr2.push(element * 1.25);
+}
+
+console.log(arr);
+console.log(arr2);
+*/
+/*
+Задание #4
+
+Создайте функцию, объявленную с помощью ключевого слова function, с именем sayHello(). Она принимает в параметры name и возвращает строку вида: "Hello, {name}!". Если функция была вызвана без указания name, то выведите строку "Hello, someone!".
+Закомментируйте функцию и напишите аналогичную, но в виде стрелочной функции.
+
+// function sayHello(name = 'someone') {
+//     return `Hello ${name}!`
+// };
+
+const sayHello = (name = 'someone') => `Hello ${name}!`;
+*/
+/*
+Задание #5
+
+Напишите функцию calc(), которая принимает в параметры a и b, а также operation. В зависимости от переданной операции (+, -, /, *) возвращаем необходимый результат выражения с числами.
+
+const calc = (a: number, b: number, operation: string): number | undefined => {
+    if (operation !== '+' && operation !== '-' && operation !== '*' && operation !== '/') {
+        throw new Error("оператор должен быть указан!");
+    } else {
+        switch (operation) {
+            case '+':
+                return a + b;
+            case '-':
+                return a - b;
+            case '/':
+                return a / b;
+            case '*':
+                return a * b;
+            default:
+                break
+        }
+    }
+};
+
+console.log(calc(2, 4, 'd'));
+*/
+/*
+Задание #6
+
+Создайте переменную age, присвоив ей числовое значение.
+Создайте переменную category, присвоив ей с помощью тернарного оператора значение:
+"Взрослый" — если age больше или равно 18.
+"Детский" — если age меньше 18.
+Выведите переменные в консоль.
+
+const age = 25;
+const category = age >= 18 ? 'Взрослый' : 'Детский';
+
+console.log(age, category);
+*/
+/*
+Задание #7
+
+Создайте переменные a и b с числовыми значениями.
+Создайте переменную c, в которую с помощью тернарного оператора присвоите наибольшее значение (или a, или b).
+Выведите значение c в консоль.
+
+const a = 1;
+const b = 4;
+const c = a > b ? a : b;
+
+console.log(c);
+*/
+/*
+Задание #1
+
+Создайте 2 объекта john и ann с полями name, age, pet и заполните их именем, возрастом и именем питомца соответственно.
+Создайте функцию, которая в параметры принимает объект человека (john или ann), и в качестве результата выводит информацию о нем в консоль: “Меня зовут {name}, мне {age}, у меня есть питомец {pet}”.
+Создайте функцию incrementAge(), которая в параметры принимает объект человека и увеличивает ему возраст на 1.
+Выведите циклом все названия свойств и их значения, которые есть у объекта john.
+
+const john = {
+    name: 'John',
+    age: 25,
+    pet: 'Archi'
+};
+
+const ann = {
+    name: 'Ann',
+    age: 28,
+    pet: 'Ryan'
+};
+
+const introduce = (human) => {
+    console.log(`Меня зовут ${human.name}, мне ${human.age}, у меня есть питомец ${human.pet}`);
+};
+
+const incrementAge = (human) => {
+    return human.age ++;
+};
+
+for (const key in john) {
+    console.log(`Свойство: ${key}, Значение: ${john[key]}`);
+};
+*/
+/*
+Задание #2
+
+Создайте функцию, которая на вход принимает массив, а на выходе возвращает сумму его элементов:
+
+// через for
+// const sumArr = (arr: number[]): number => {
+//     let sum: number = 0;
+
+//     for (let i = 0; i < arr.length; i++) {
+//         sum += arr[i];
+//     }
+//     return sum;
+// };
+
+// console.log(sumArr([1,2,3,4,5]));
+
+// через for in
+// const sumArr = (array: number[]): number => {
+//     let sum: number = 0;
+
+//     for (const i of array) {
+//         sum += i;
+//     }
+//     return sum;
+// };
+
+// console.log(sumArr([1, 2, 3, 4, 5, 6]));
+
+
+*/
+/** Найдите сумму всех чисел меньше 1000, кратных 3 или 5.
+ *
+ const sumFunc = (number: number): number => {
+ 
+     let sum: number = 0;
+ 
+     for (let index = 0; index < number; index++) {
+         if (index % 3 === 0 || index % 5 === 0) {
+             sum += index;
+         }
+     }
+     return sum;
+ }
+ 
+ console.log(sumFunc(7));
+ *
+ */
+/*
+Задание #3
+
+Создайте пустой массив names. Добавьте в него 5 любых имен. Выведите массив в консоль. Уберите из начала и конца массива по 1 элементу. Снова выведите массив в консоль.
+
+const names: string[] = ['Alex', 'Kaleb', 'Jack', 'Jill', 'Kyle'];
+console.log(names);
+
+names.pop();
+names.shift()
+console.log(names);
+*/
+/*
+Задание #4
+
+Дан массив names. Необходимо сделать функцию, которая на основе этого массива генерирует строку c HTML. Она представляет из себя список элементов (<ul>), где каждый элемент списка (<li>) содержит элемент массива.
+
+
+*/
+var names = ['Bob', 'Klar', 'Petya', 'Ilya', 'Viktoriya'];
+var func = function (array) {
+    var list = document.createElement('ul');
+    array.forEach(function (element) {
+        var li = document.createElement('li');
+        li.innerText = element;
+        list.appendChild(li);
+    });
+};
+// второй простой способ через map
+var render = function (names) { return "<ul>".concat(names.map(function (item) { return "<li>".concat(item, "</li>"); }).join(''), "</ul>"); };
