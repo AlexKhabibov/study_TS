@@ -682,11 +682,11 @@ for (const key in john) {
 
 
 /** Найдите сумму всех чисел меньше 1000, кратных 3 или 5.
- * 
+ *
  const sumFunc = (number: number): number => {
- 
+
      let sum: number = 0;
- 
+
      for (let index = 0; index < number; index++) {
          if (index % 3 === 0 || index % 5 === 0) {
              sum += index;
@@ -694,9 +694,9 @@ for (const key in john) {
      }
      return sum;
  }
- 
+
  console.log(sumFunc(7));
- * 
+ *
  */
 
 
@@ -778,48 +778,51 @@ console.log(age, favColor, height, pet, money);
 
 
 
-const obj = {
-    age: 22,
-    favColor: 'red',
-    height: 188,
-    pet: 'dog',
-    money: 12300
-}
+
 
 // Необходимо выполнить деструктуризацию объекта(для всех полей).Выведите полученные переменные в консоль.
 
-const obj = {
-    age: 22,
-    favColor: 'red',
-    height: 188,
-    pet: 'dog',
-    money: 12300
-}
+// interface Person {
+//     age: number;
+//     favColor: string;
+//     height: number;
+//     pet: string;
+//     money: number;
+//   }
 
-const { age, favColor, height, pet, money } = obj;
-console.log(age, favColor, height, pet, money);
+// const obj: Person = {
+//     age: 22,
+//     favColor: 'red',
+//     height: 188,
+//     pet: 'dog',
+//     money: 12300
+// }
+
+// const { age, favColor, height, pet, money } = obj;
+// console.log(age, favColor, height, pet, money);
 
 
 
 
 
-/*
-Задание #6
+// Задание #6
+// Даны объекты:
 
-Даны объекты:
-const obj = {
-    age: 22,
-    favColor: 'red',
-    height: 188,
-    pet: 'dog',
-    money: 12300
-};
+// const obj = {
+//     age: 22,
+//     favColor: 'red',
+//     height: 188,
+//     pet: 'dog',
+//     money: 12300
+// };
 
-const updateObj = {
-    age: 23,
-    favColor: 'blue',
-    money: 11450
-};
+// const updateObj = {
+//     age: 23,
+//     favColor: 'blue',
+//     money: 11450
+// };
+
+
 
 // const obj2 = { ... };
 // console.log(obj2);
@@ -833,48 +836,68 @@ const updateObj = {
 //  }
 //
 
- Необходимо создать новый объект obj2, в котором будут все поля объекта obj, но с обновленными значениями полей как у объекта updateObj.
-
- const obj = {
-     age: 22,
-     favColor: 'red',
-     height: 188,
-     pet: 'dog',
-     money: 12300
- };
-
- console.log(obj);
-
- const updateObj = {
-     age: 23,
-     favColor: 'blue',
-     money: 11450
- };
-
- const obj2 = Object.assign({}, obj, updateObj);
-
- // второй способ через spread
-
- const obj2 = { ...obj, ...updateObj };
-*/
 
 
-/*
-Задание #1
+//  Необходимо создать новый объект obj2, в котором будут все поля объекта obj, но с обновленными значениями полей как у объекта updateObj.
 
-Реализуйте функцию isPrimeNumber(), которая принимает число и возвращает true, если оно простое, иначе — false.
+// interface Person {
+//     age: number;
+//     favColor: string;
+//     height: number;
+//     pet: string;
+//     money: number;
+// }
 
-const isPrimeNumber = (number) => {
-    for (let i = 2; i < number; i++) {
-        if (number % i === 0) {
-            return false
-        }
-    }
-    return number !== 1;
-}
 
-console.log(isPrimeNumber (6));
-*/
+// const obj: Person = {
+//     age: 22,
+//     favColor: 'red',
+//     height: 188,
+//     pet: 'dog',
+//     money: 12300
+// };
+
+// console.log(obj);
+
+// const updateObj: Partial<Person> = {
+//     age: 23,
+//     favColor: 'blue',
+//     money: 11
+// };
+
+// const obj2 = Object.assign({}, obj, updateObj);
+
+// второй способ через spread
+
+// const obj2 = { ...obj, ...updateObj };
+// console.log(obj2);
+
+
+
+
+
+
+
+
+
+// Задание #1
+
+// Реализуйте функцию isPrimeNumber(), которая принимает число и возвращает true, если оно простое, иначе — false.
+
+// const isPrimeNumber = (number: number): boolean => {
+//     for (let i = 2; i < number; i++) {
+//         if (number % i === 0) {
+//             return false
+//         }
+//     }
+//     return number !== 1;
+// }
+
+// console.log(isPrimeNumber (6));
+// */
+
+
+
 
 
 
@@ -887,7 +910,7 @@ console.log(isPrimeNumber (6));
 Если число num < max - (max - min) / 2, то функция возвращает num ** 2.
 Иначе возвращает округленное вниз значение num.
 
-const func = (num, min, max) => {
+const func = (num: number, min: number, max: number): number | undefined => {
     if (num < min) {
         return min ** 2;
     } else if (num > max) {
@@ -904,13 +927,18 @@ console.log(func(3, 1, 10));
 
 
 
+
+
+
+
+
 /*
 Задание #3
 
 Создайте функцию isPerfectNumber(), которая принимает целое положительное число в параметры и возвращает true,
 если число является совершенным, и false в противном случае.
 
-const isPerfectNumber = num => {
+const isPerfectNumber = (num: number): boolean => {
     const a = [];
     for(let i = 1; i < num; i++) {
         if(num % i === 0) {
@@ -919,7 +947,10 @@ const isPerfectNumber = num => {
     }
     return a.reduce((a, b) => a + b, 0) === num;
 }
+
 */
+
+
 
 
 
@@ -936,14 +967,22 @@ const car = {
 
 Необходимо написать написать функцию, которая принимает объект машины и возвращает строку с HTML, заполненную значениями переданного объекта.
 
-const car = {
+
+  interface Auto {
+    name: string,
+    type: string,
+    maxSpeed: string,
+    color: string,
+  }
+
+  const car: Auto = {
     name: 'Hyundai Solaris',
     type: 'sedan',
     maxSpeed: '320',
     color: 'red',
 }
 
-function generateCarHTML(car) {
+function generateCarHTML(car: Auto): string {
     return `
       <article>
         <div>
@@ -962,6 +1001,7 @@ function generateCarHTML(car) {
     `;
   }
 
+
   // Генерация и вставка на страницу
   const carHTML = generateCarHTML(car);
   document.body.innerHTML += carHTML;
@@ -969,16 +1009,19 @@ function generateCarHTML(car) {
 
 
 
-
 /*
   Задание #2
 
   Необходимо написать функцию countWords(), которая принимает предложение и подсчитывает количество слов в нем.
-  const sentence = "Hello, how are you?";
-  console.log(countWords(sentence)); // 4
 
-  const countWords = (text) => text.split(' ').length;
+    const sentence = "Hello, how are you?";
+
+  const countWords = (text: string) => text.split(' ').length;
+  console.log(countWords(sentence)); // 4
   */
+
+
+
 
 
 

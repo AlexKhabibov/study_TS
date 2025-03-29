@@ -520,16 +520,147 @@ console.log(names);
 
 Дан массив names. Необходимо сделать функцию, которая на основе этого массива генерирует строку c HTML. Она представляет из себя список элементов (<ul>), где каждый элемент списка (<li>) содержит элемент массива.
 
+const names = ['Bob', 'Klar', 'Petya', 'Ilya', 'Viktoriya'];
 
-*/
-var names = ['Bob', 'Klar', 'Petya', 'Ilya', 'Viktoriya'];
-var func = function (array) {
-    var list = document.createElement('ul');
-    array.forEach(function (element) {
-        var li = document.createElement('li');
+const func = (array: string[]): void => {
+    let list = document.createElement('ul');
+    array.forEach(element => {
+        let li = document.createElement('li');
         li.innerText = element;
         list.appendChild(li);
     });
 };
+
 // второй простой способ через map
-var render = function (names) { return "<ul>".concat(names.map(function (item) { return "<li>".concat(item, "</li>"); }).join(''), "</ul>"); };
+const render = (names: string[]): string => `<ul>${names.map(item => `<li>${item}</li>`).join('')}</ul>`;
+*/
+/*
+Задание #5
+Дан объект:
+
+const obj = {
+    age: 22,
+    favColor: 'red',
+    height: 188,
+    pet: 'dog',
+    money: 12300
+}
+
+Необходимо выполнить деструктуризацию объекта (для всех полей). Выведите полученные переменные в консоль.
+
+const obj = {
+    age: 22,
+    favColor: 'red',
+    height: 188,
+    pet: 'dog',
+    money: 12300
+}
+
+const { age, favColor, height, pet, money } = obj;
+console.log(age, favColor, height, pet, money);
+*/
+// Необходимо выполнить деструктуризацию объекта(для всех полей).Выведите полученные переменные в консоль.
+// interface Person {
+//     age: number;
+//     favColor: string;
+//     height: number;
+//     pet: string;
+//     money: number;
+//   }
+// const obj: Person = {
+//     age: 22,
+//     favColor: 'red',
+//     height: 188,
+//     pet: 'dog',
+//     money: 12300
+// }
+// const { age, favColor, height, pet, money } = obj;
+// console.log(age, favColor, height, pet, money);
+// Задание #6
+// Даны объекты:
+// const obj = {
+//     age: 22,
+//     favColor: 'red',
+//     height: 188,
+//     pet: 'dog',
+//     money: 12300
+// };
+// const updateObj = {
+//     age: 23,
+//     favColor: 'blue',
+//     money: 11450
+// };
+// const obj2 = { ... };
+// console.log(obj2);
+//
+//  {
+//  age: 23,
+//  favColor: 'blue',
+//  height: 188,
+//  pet: 'dog',
+//  money: 11450
+//  }
+//
+//  Необходимо создать новый объект obj2, в котором будут все поля объекта obj, но с обновленными значениями полей как у объекта updateObj.
+// interface Person {
+//     age: number;
+//     favColor: string;
+//     height: number;
+//     pet: string;
+//     money: number;
+// }
+// const obj: Person = {
+//     age: 22,
+//     favColor: 'red',
+//     height: 188,
+//     pet: 'dog',
+//     money: 12300
+// };
+// console.log(obj);
+// const updateObj: Partial<Person> = {
+//     age: 23,
+//     favColor: 'blue',
+//     money: 11
+// };
+// const obj2 = Object.assign({}, obj, updateObj);
+// второй способ через spread
+// const obj2 = { ...obj, ...updateObj };
+// console.log(obj2);
+// Задание #1
+// Реализуйте функцию isPrimeNumber(), которая принимает число и возвращает true, если оно простое, иначе — false.
+// const isPrimeNumber = (number: number): boolean => {
+//     for (let i = 2; i < number; i++) {
+//         if (number % i === 0) {
+//             return false
+//         }
+//     }
+//     return number !== 1;
+// }
+// console.log(isPrimeNumber (6));
+// */
+/*
+Задание #2
+
+Напишите функцию func(), которая принимает num, min, max:
+Если число num < min, то функция возвращает min ** 2.
+Если число num > max, функция возвращает max ** 2.
+Если число num < max - (max - min) / 2, то функция возвращает num ** 2.
+Иначе возвращает округленное вниз значение num.
+
+
+*/
+var func = function (num, min, max) {
+    if (num < min) {
+        return Math.pow(min, 2);
+    }
+    else if (num > max) {
+        return Math.pow(max, 2);
+    }
+    else if (num < max - (max - min) / 2) {
+        return Math.pow(num, 2);
+    }
+    else {
+        Math.round(num);
+    }
+};
+console.log(func(3, 1, 10));
