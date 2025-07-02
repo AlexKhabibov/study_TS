@@ -4446,3 +4446,355 @@ replyBtns.forEach(btn => {
 //     .map(item => item.value);
 
 //     console.log(selectedEls);
+
+
+
+
+
+
+
+
+
+/*
+const val: string = 'sdfgs';
+const val1: number = 10;
+
+let val3: any = 10;
+val3 = 'dfs';
+
+let val4: unknown = 10;
+let val5: number;
+if (typeof val4 === "number") {
+    val5 = val4 + 1;
+}
+
+function fun1(param: never) {
+    throw new Error("error");
+}
+
+
+interface Address {
+    city: string;
+    str: string;
+}
+
+type User = {
+    name: string;
+    age: number;
+    address: Address;
+};
+
+
+const user: User = {
+    name: 'Alex',
+    age: 39,
+    address: {
+        city: 'Moscow',
+        str: 'sdfsd'
+    },
+};
+
+
+function fn(params: number): number {
+    return params;
+}
+
+// console.log(fn(10));
+*/
+
+
+
+
+
+// схема супертип-пддтип: any <--> все типы, unknown --> любой тип (через проверку), unknown <-- любой тип (без проверки)
+
+// let v: unknown = 10;
+
+// v = 'sdf'
+
+// v = 'dfdf';
+// if (typeof v === 'string') {
+
+//     console.log(v.toUpperCase());
+// }
+
+
+
+
+
+// type ID = string | number;
+
+// function printTypeof(val: ID): void {
+//     console.log(val);
+//     console.log(typeof val);
+// }
+
+// printTypeof('10')
+// printTypeof(10)
+
+
+
+
+
+// type ApiResponse = {
+//     status: 'success' | 'error';
+//     data?: unknown
+// };
+
+// const apiData: ApiResponse = {
+//     status: 'success',
+// };
+
+// console.log(apiData);
+
+
+
+
+/*
+interface User111 {
+    name: string;
+    age: number;
+    admin: true | false;
+    adress?: string;
+};
+
+type Color = 'red' | 'green';
+
+const green: Color = 'green';
+const red: Color = 'red';
+
+function setColor(color: Color | 'цвет') {
+    switch (color) {
+        case red:
+            return color;
+        case green:
+            return color;
+    }
+    return color;
+};
+
+console.log(setColor('green'));
+
+const user11: User111 = {
+    name: 'Alex',
+    age: 39,
+    admin: true,
+};
+
+const user22: User111 = {
+    name: 'John',
+    age: 29,
+    admin: false,
+};
+
+console.log(user11);
+
+function fn222(params: User111) {
+    return `${params.admin}, ${params.name}`;
+};
+
+console.log(fn222(user11));
+
+
+
+const arr1: User111[] = [user11, user22];
+
+console.log(arr1);
+*/
+
+
+
+/*
+// CONDITIONAL TYPES
+type isArray<T> = T extends any[] ? true : false;
+
+const first: isArray<string> = true; // ts ругается, так как значение может быть true, только если это массив
+const second: isArray<number[]> = true;
+const third: isArray<boolean[]> = false;
+
+
+
+type User1 = {
+    name: string;
+};
+
+type Human<T> = T extends User1 ? { value: any } : { value: unknown };
+
+const user111: Human<{ name: null }>; // тут ts выдает ошибку, потому что ожидает на вход string, в случае чего вернет any. В противном случае вернет тип unknown
+*/
+
+// type User = {
+//     name: string;
+// }
+
+// function lkjashg<T extends User>(params: T): T {
+//     console.log(typeof params);
+//     return params;
+// }
+
+// function lkjashg<T>(params: T): T {
+//     console.log(typeof params);
+//     return params
+// }
+
+// const value1 = lkjashg({ name: 'hello' });
+// const value2 = lkjashg(23);
+// const value3 = lkjashg('hello');
+// const value4 = lkjashg(null);
+
+// lkjashg<number>(100);
+
+// function sdf<T extends { value: number }>(params: T): T {
+//     return params
+// };
+
+// sdf({value: '10'}); // не дает испольщовать тип НЕ number
+
+
+// type isAdmin = {
+//     admin: boolean
+// };
+
+// function fgsgs<T extends isAdmin>(params: T) {
+//     return params;
+// };
+
+// fgsgs({ admin: true })
+
+
+
+
+// условные типы
+
+// type isString<T> = T extends string ? true : false;
+
+// const str: isString<number> = false;
+// const str2: isString<string> = true;
+
+// console.log(str, str2);
+
+// type A = isString<string>;
+// type B = isString<number>;
+
+
+
+
+
+// Сужение (narrowing)
+/*
+// через typeof
+
+function fn(params: string | number | boolean) {
+    if (typeof params === 'string') {
+        return params.length
+    } else if (typeof params === 'number') {
+        return params.toFixed(1);
+    } else {
+        return typeof params;
+    }
+};
+
+console.log(fn('dfhgsg')); // length is 6
+console.log(fn(12.234454)); // округлено до 1 знака 12.2
+console.log(fn(true)); // boolean
+*/
+
+/*
+// через проверку аргументов
+function fn(params: number | string | boolean, params2: number) {
+    if (params === null) { // от обратного
+        params
+    } else if (params === params2) { // ts виидит если параемтры равны
+        return typeof params;
+    }
+};
+*/
+
+
+
+/*
+// через оператор in
+
+interface User {
+    userName: string;
+    userAge: number;
+};
+
+interface Person {
+    firstName: string;
+    lastName: string;
+    personAge: number;
+};
+
+function fn1(params: User | Person) {
+    if ('personAge' in params) {
+        params; // ts видит что в параметрах поле personAge содержится только в интерфейсе Person, пожтому внутри условного блока он автоматически сузил тип до Person
+    };
+
+    if ('userAge' in params) {
+        params; // тут такая же логика только уже User
+    };
+
+    params; // за пределами условного блока тип опять не суженый (User | Person)
+}
+    */
+
+
+/*
+// DISCRIMINATED UNIONS
+
+interface BaseCar {
+    brand: string;
+    hp: number;
+};
+
+interface Color extends BaseCar {
+    color: string;
+    type: 'color';
+};
+
+interface BodyType extends BaseCar {
+    body: string;
+    type: 'body';
+};
+
+type Car = Color | BodyType;
+
+function fn222(params: Color | BodyType) { // c помощью одинакового поля type у обоиз интерфейсов мы можем создать логику сравнения
+    switch (params.type) {
+        case 'color':
+            return params.color // тип паармаетра стал Color
+            break;
+        case 'body':
+            return params.body // тип параметра стал BodyType
+            break;
+        default:
+            params;
+    }
+    params;
+}
+    */
+
+
+
+
+/*
+// CUSTOM TYPE GUARDS
+
+type User = {
+    name: string;
+    age: number;
+};
+
+function isUser(value: any): value is User {
+    return (
+        typeof value === "object" &&
+        value !== null &&
+        "name" in value &&
+        "age" in value
+    );
+}
+    */
+
+
+
