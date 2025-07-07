@@ -3331,6 +3331,7 @@ const user111: Human<{ name: null }>; // тут ts выдает ошибку, п
 //     return params;
 // };
 // fgsgs({ admin: true })
+// условные типы
 // type isString<T> = T extends string ? true : false;
 // const str: isString<number> = false;
 // const str2: isString<string> = true;
@@ -3355,14 +3356,280 @@ console.log(fn('dfhgsg')); // length is 6
 console.log(fn(12.234454)); // округлено до 1 знака 12.2
 console.log(fn(true)); // boolean
 */
+/*
 // через проверку аргументов
-function fn(params, params2) {
-    if (params === null) {
-        params;
-    }
-    else if (params === params2) {
+function fn(params: number | string | boolean, params2: number) {
+    if (params === null) { // от обратного
+        params
+    } else if (params === params2) { // ts виидит если параемтры равны
         return typeof params;
     }
+};
+*/
+/*
+// через оператор in
+
+interface User {
+    userName: string;
+    userAge: number;
+};
+
+interface Person {
+    firstName: string;
+    lastName: string;
+    personAge: number;
+};
+
+function fn1(params: User | Person) {
+    if ('personAge' in params) {
+        params; // ts видит что в параметрах поле personAge содержится только в интерфейсе Person, пожтому внутри условного блока он автоматически сузил тип до Person
+    };
+
+    if ('userAge' in params) {
+        params; // тут такая же логика только уже User
+    };
+
+    params; // за пределами условного блока тип опять не суженый (User | Person)
+}
+    */
+/*
+// DISCRIMINATED UNIONS
+
+interface BaseCar {
+    brand: string;
+    hp: number;
+};
+
+interface Color extends BaseCar {
+    color: string;
+    type: 'color';
+};
+
+interface BodyType extends BaseCar {
+    body: string;
+    type: 'body';
+};
+
+type Car = Color | BodyType;
+
+function fn222(params: Color | BodyType) { // c помощью одинакового поля type у обоиз интерфейсов мы можем создать логику сравнения
+    switch (params.type) {
+        case 'color':
+            return params.color // тип паармаетра стал Color
+            break;
+        case 'body':
+            return params.body // тип параметра стал BodyType
+            break;
+        default:
+            params;
+    }
+    params;
+}
+    */
+/*
+// CUSTOM TYPE GUARDS
+
+type User = {
+    name: string;
+    age: number;
+};
+
+function isUser(value: any): value is User {
+    return (
+        typeof value === "object" &&
+        value !== null &&
+        "name" in value &&
+        "age" in value
+    );
+}
+    */
+/*
+interface Obj1 {
+    name: string
+}
+
+interface Obj2 {
+    age: number
+}
+
+const sdfg = {
+    name: 'sfsggs'
+} as Obj1;
+
+console.log(typeof sdfg); // объект стал типа Obj1
+
+const sdfg1 = {
+    name: 'sfsggs'
+} satisfies Obj1; // не перобразовывает объект, а проверяет соответствие структурно (свопадают ли)
+
+console.log(typeof sdfg1); // объект стал типа Obj1
+*/
+// function log(params:string | number) {
+//     return typeof params;
+// };
+// console.log(log(23));
+// можно слделать универсальную функцию
+// function log<T extends string | number>(params: T) {
+//     return typeof params;
+// };
+// console.log(log(23));
+// type guards
+// typeof
+// function fn12(params: string | number) {
+//     if (typeof params === 'string') {
+//         return params;
+//     } else {
+//         return params;
+//     }
+// }
+// in
+// type User = {
+//     isAdmin: boolean;
+//     isRegistred: boolean;
+// }
+// type Human = {
+//     humanName: string;
+//     humanAge: number;
+// }
+// function fun123(params: User | Human) {
+//     if ('isAdmin' in params) {
+//         return params.isRegistred;
+//     } else {
+//         return params.humanName;
+//     }
+// };
+// const user1: User = {
+//     isAdmin: false,
+//     isRegistred: true
+// };
+// const human1: Human = {
+//     humanName: 'Alex',
+//     humanAge: 34
+// }
+// console.log(fun123(user1));
+// interface User {
+//     name: string;
+//     age: number;
+// }
+// const obj1 = { name: 'dfsf', age: 34 } satisfies User;
+// let val: any = 34 as number;
+// console.log(typeof val);
+// let asd: object;
+// asd = 'fdf';
+// let fgf: Object;
+// fgf = 23;
+// console.log(typeof fgf);
+// let jgj: {};
+// jgj = 23;
+// console.log(typeof jgj);
+/*
+const user = {
+    name: "Alex",
+    age: 30,
+};
+
+// Забираем тип у `user` (то есть получаам ту же структуру типа)
+type UserType = typeof user;
+
+
+const cvf: UserType = {
+    name: 'sdfsf',
+    age: 23
+}
+
+
+let clr1 = 'red' as const; // можно зафиксировать как константу через as или просто const, так как через let, можно переназначить
+
+type RedColor = typeof clr1;
+
+const clr2: RedColor = 'green'; // автокомплит посказывает что можно только 'red' выбрать
+
+// так же можно и с функциями делать
+function getUserData(params: number): number {
+    return params;
+};
+
+type GetData2 = typeof getUserData;
+
+type GetDataReturnValue = ReturnType<typeof getUserData>; // вытаскиваем тип возвращаемого значения функцией
+
+
+function getByKey<T, K extends keyof T>(obj:T, key: K): T[K] {
+    return obj[key];
+};
+
+
+
+console.log(getByKey(cvf, 'age'));
+*/
+/*
+type User = {
+    name?: string;
+};
+
+const user: User = { name: "Alex" };
+
+// TS предупреждает: user.name может быть undefined
+const length = user.name.length;      // ❌ ошибка
+
+// Но если уверен:
+const length2 = user.name?.length;    // ✅ компилятор "успокоится"
+*/
+/*
+// ОПЦИОНАЛЬНАЯ ЦЕПОЧКА (?.)
+interface Person {
+    name: string;
+    age: number;
+    address?: {
+        city: string;
+    };
+    getsmth?: () => number;
+    array?: string[];
+};
+
+const person1: Person = {
+    name: 'alex',
+    age: 23
+}
+
+// person1.address?.city;
+// console.log(person1.address?.city); // undefined, но ошибки нет
+
+
+// ниже пример как убрать опасения ts с помощью опциональной цепочки (без ?. ts будет выдавать ошибку на этапе компилации и в подсказках ide)
+function func(params: Person) {
+    console.log(params.address?.city); // надо использовать опициональную цепочку (?.)
+    console.log(params.getsmth?.()); // так же и с методами можно работать
+    console.log(params.array?.[0]); // так же и с массивами можно работать
+};
+
+func({ name: 'dsf', age: 34 }); // выдаст ошибку undefined на этапе компиляции, но если испольщовать ?., то компиляция пройжет успешно и undfined будет доступен
+
+func({
+  name: 'Alex',
+  age: 30,
+  array: []
+});
+*/
+// enum
+// const COLOR = {
+//     RED: 'red',
+//     GREEN: 'green',
+//     BLUE: 'blue'
+// };
+// background = COLOR.BLUE; // удобно, что можем задавать цвта в одном месте на всю область приложения
+// function setColor(color: COLOR) { // так нельзя использовать
+// };
+// вот так правильно будет оформить это, похоже на объект
+var Color;
+(function (Color) {
+    Color["RED"] = "red";
+    Color["GREEN"] = "green";
+    Color["BLUE"] = "blue";
+})(Color || (Color = {}));
+;
+function setColor(color) {
+    Color.BLUE;
 }
 ;
-console.log(fn(23, 34));
+setColor(Color.BLUE);
