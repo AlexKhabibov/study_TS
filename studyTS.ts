@@ -5022,7 +5022,7 @@ func({
 // background = COLOR.BLUE; // удобно, что можем задавать цвта в одном месте на всю область приложения
 
 // function setColor(color: COLOR) { // так нельзя использовать
-    
+
 // };
 
 
@@ -5038,3 +5038,138 @@ func({
 // };
 
 // setColor(Color.BLUE);
+
+
+
+
+
+// interface User {
+//     name: string;
+// }
+
+// interface User {
+//     age: number
+// }
+
+// const user1: User = { // поля у двух одинаковых интерфейсов объединяются (у type так нельзя делать, он не может повторять имена)
+//     name: 'd',
+//     age: 2
+// }
+
+
+
+
+// const obj1 = {
+//     name: 'Alex',
+//     age: 39
+// };
+
+// type User = typeof obj1;
+
+// const obj2: User; // ts требует чтобы поля были заполнены
+
+
+
+
+
+// type User = {
+//     name:  string;
+//     age: number;
+// };
+// type UserKeys = keyof User;
+
+// const user1: User = {
+//     name: 'alex',
+//     age: 29
+// }
+
+// function getUserKeys(obj: User, key: UserKeys) { // яркий пример структурной типизации ts
+//     return obj[key]
+// };
+
+// console.log(getUserKeys(user1, 'age'));
+
+
+
+
+// type Obj1 = {
+//     address: {
+//         city: string;
+//         street?: string;
+//     },
+//     person: {
+//         name: string;
+//         age?: number;
+//     }
+// }
+
+
+// const obj1: Obj1 = {
+//     address: {
+//         city: 'string',
+//     },
+//     person: {
+//         name: 'string',
+//     }
+// }
+
+// console.log(obj1.address?.street);
+// console.log(obj1.person?.age);
+
+
+
+// enum Color {
+//     RED,
+//     GREEN,
+// };
+
+// function getColor(color?: Color) {
+//     switch (color) {
+//         case Color.RED:
+//             return 'red';
+//         case Color.GREEN:
+//             return 'green';
+//         default:
+//             return 'unknown color';
+//     }
+// }
+
+// console.log(getColor());
+// console.log(getColor(Color.GREEN));
+
+
+// type Human = {
+//     sex: string;
+//     nation: string;
+// };
+
+// type User = Human & {
+//     isRegistred: boolean;
+//     isAdmin: boolean;
+// };
+
+// const user1: User = {
+//     isRegistred: true,
+//     isAdmin: false,
+//     sex: 'man',
+//     nation: 'american'
+// };
+
+
+
+// interface Human {
+//     sex: string;
+//     nation: string;
+// };
+
+// interface User extends Human{
+//     isRegistred: boolean;
+//     isAdmin: boolean;
+// };
+
+// const user1: User = {
+//     isRegistred: true,
+//     isAdmin: false,
+//     sex: 'man',
+//     nation: 'american'
+// };

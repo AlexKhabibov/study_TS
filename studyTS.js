@@ -3620,16 +3620,80 @@ func({
 // background = COLOR.BLUE; // удобно, что можем задавать цвта в одном месте на всю область приложения
 // function setColor(color: COLOR) { // так нельзя использовать
 // };
-// вот так правильно будет оформить это, похоже на объект
+// // вот так правильно будет оформить это, похоже на объект
+// enum Color {
+//     RED = 'red',
+//     GREEN = 'green',
+//     BLUE = 'blue',
+// };
+// function setColor(color: Color) { // тепперь ts все подхватывает
+//   Color.BLUE  
+// };
+// setColor(Color.BLUE);
+// interface User {
+//     name: string;
+// }
+// interface User {
+//     age: number
+// }
+// const user1: User = { // поля у двух одинаковых интерфейсов объединяются (у type так нельзя делать, он не может повторять имена)
+//     name: 'd',
+//     age: 2
+// }
+// const obj1 = {
+//     name: 'Alex',
+//     age: 39
+// };
+// type User = typeof obj1;
+// const obj2: User; // ts требует чтобы поля были заполнены
+// type User = {
+//     name:  string;
+//     age: number;
+// };
+// type UserKeys = keyof User;
+// const user1: User = {
+//     name: 'alex',
+//     age: 29
+// }
+// function getUserKeys(obj: User, key: UserKeys) { // яркий пример структурной типизации ts
+//     return obj[key]
+// };
+// console.log(getUserKeys(user1, 'age'));
+// type Obj1 = {
+//     address: {
+//         city: string;
+//         street?: string;
+//     },
+//     person: {
+//         name: string;
+//         age?: number;
+//     }
+// }
+// const obj1: Obj1 = {
+//     address: {
+//         city: 'string',
+//     },
+//     person: {
+//         name: 'string',
+//     }
+// }
+// console.log(obj1.address?.street);
+// console.log(obj1.person?.age);
 var Color;
 (function (Color) {
-    Color["RED"] = "red";
-    Color["GREEN"] = "green";
-    Color["BLUE"] = "blue";
+    Color[Color["RED"] = 0] = "RED";
+    Color[Color["GREEN"] = 1] = "GREEN";
 })(Color || (Color = {}));
 ;
-function setColor(color) {
-    Color.BLUE;
+function getColor(color) {
+    switch (color) {
+        case Color.RED:
+            return 'red';
+        case Color.GREEN:
+            return 'green';
+        default:
+            return 'unknown color';
+    }
 }
-;
-setColor(Color.BLUE);
+console.log(getColor());
+console.log(getColor(Color.GREEN));
