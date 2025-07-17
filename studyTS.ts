@@ -5173,3 +5173,171 @@ func({
 //     sex: 'man',
 //     nation: 'american'
 // };
+
+
+
+
+
+
+// const input = document.querySelector('input');
+// input.value = "Hello"; // ❌ Ошибка в TS, так как возможен null (const input: HTMLInputElement | null)
+
+
+// if (input !== null) { // можно преврить на отсутвие null
+//   input.value = "Hello";
+// }
+
+// if (input?.value) { 
+//     input.value = "Hello";
+// };
+
+// if (input) { 
+//     input.value = "Hello";
+// };
+
+// const input = document.querySelector('input')!; // можно явно сказать что null или undefined не будет
+// input.value = "Hello";
+
+
+
+
+
+
+// type User = {
+//     name: string;
+//     age: number;
+// };
+
+// type UserKeys = keyof User;
+// const user11: UserKeys = 'age'; // тип мжет быть или 'age' или 'name';
+
+// type UserNameType = User['name']; // обращение по ключу типа
+// const user1: UserNameType = 'Alex'; // тип должен быть только стринг
+
+
+
+
+
+
+
+// type User = { name: string; age: number };
+
+// type UserKey = keyof User;
+
+// let val: UserKey = 'name';
+// val = 'age';
+
+// type KeyString = User['name'] // по ключу получили значение string
+// type KeyNumber = User['age'] // по ключу получили значение number
+
+// const valNum: KeyNumber = 23 // значение может быть только number
+// const valStr: KeyString = 'hello' // значение может быть только string
+
+
+// type Values<T> = [keyof T];
+// type UserVal = Values<User>; // string | number
+
+// T = User;
+// keyof T = 'name' | 'age'
+// T['name' | 'age'] = T['name'] | T['age'] = string | number
+
+
+
+
+
+// type User = { name: string; age: number };
+
+// const obj1: User = {
+//     name: 'Alex',
+//     age: 23,
+// }
+
+// type UserKeyOfType = keyof typeof obj1; // 'name' | 'age';
+// const objAge: UserKeyOfType = 'age';
+// const objName: UserKeyOfType = 'name';
+
+
+// type UserTypeOfKey = typeof obj1[keyof typeof obj1]; // string | number
+
+// const asd: UserTypeOfKey = 'sdfsdg'; // тип может быть string | number
+// const asd1: UserTypeOfKey = 234;// тип может быть string | number
+
+
+
+// function getValByKey<T, K extends keyof T>(object:T, key: K): void {
+//     console.log(object[key]);
+// }
+
+// getValByKey(obj1, 'name');
+
+
+
+
+// type T = { name: string; age: number };
+// type Result = T[keyof T]; // string | number
+
+
+
+
+
+
+
+
+// MAPPED TYPES
+
+// type User = { name: string; age: number };
+
+// type ReadOnly<T> = {
+//     readonly [K in keyof T]: T[K]; // добавляем спереди readonly и наши поля становятся ридонли, так как этот синтакиси прохоится по всем полям и копирует их
+// };
+
+// type ReadOnly<T> = {
+//     readonly [K in keyof T]?: T[K]; // добавляем ? и наши поля становятся ридоли и опциональными, так как этот синтакиси прохоится по всем полям, копирует их с новой задачей
+// };
+
+// type Optional<T> = {
+//     -readonly [K in keyof T]-?: T[K]; // добавляем -? и наши поля обратно перестают быть ридонли и опуиональыми, так как этот синтакиси проходится по всем полям, копируя их с новой задачей
+// };
+
+// type NewUser = ReadOnly<User>; // взяли все измененные поля и положили в новый тип
+// type NewUser2 = Optional<User>; // взяли все измененные поля и положили в новый тип
+// type NewUser3 = ReadOnly<NewUser2>; // а можно и цепочку сделать
+
+
+
+
+// сделаем все поля набором олного типа (то есть при прроходе по всему типу, каждый тип на выходе должен быть равен заданному типу)
+// type ArrayAnalogType<T> = { 
+//     [K in number]: T;
+// };
+
+// const arr: ArrayAnalogType<number> = [23, 23, 23];
+
+
+
+
+// сделаем тип, в котором по умоланию какое-то общее поле других типов, будет исключаться
+// type User = {
+//     id: number;
+//     type: string;
+//     name: string;
+// };
+
+// type Car = {
+//     type: string;
+//     brand: string;
+// };
+
+// type Random = {
+//     type: string;
+//     name: string;
+// };
+
+// type WithNoTypeField<T> = {
+//     [K in keyof T as Exclude<K, 'type'>]: T[K]; // с помщью as делаем тайп ассертшин. Так же исклчаем с помощью консрукции Exclude<K, 'type'>
+// };
+
+// const withoutType: WithNoTypeField<User> = { // ts не трубует наличие поля 'type', потому что мы его убрали
+//     id: 34,
+//     name: 'dfd'
+// }
