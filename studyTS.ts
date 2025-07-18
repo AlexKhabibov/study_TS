@@ -5314,30 +5314,95 @@ func({
 // const arr: ArrayAnalogType<number> = [23, 23, 23];
 
 
-
+/*
+// УТИЛИТАРНЫЕ ТИПЫ
 
 // сделаем тип, в котором по умоланию какое-то общее поле других типов, будет исключаться
-// type User = {
-//     id: number;
-//     type: string;
-//     name: string;
-// };
+type User = {
+    id: number;
+    type: string;
+    name: string;
+};
 
-// type Car = {
-//     type: string;
-//     brand: string;
-// };
+type Car = {
+    type: string;
+    brand: string;
+};
 
-// type Random = {
-//     type: string;
-//     name: string;
-// };
+type Random = {
+    type: string;
+    name: string;
+};
 
-// type WithNoTypeField<T> = {
-//     [K in keyof T as Exclude<K, 'type'>]: T[K]; // с помщью as делаем тайп ассертшин. Так же исклчаем с помощью консрукции Exclude<K, 'type'>
-// };
+type WithNoTypeField<T> = {
+    [K in keyof T as Exclude<K, 'type'>]: T[K]; // с помщью as делаем тайп ассертшин. Так же исклчаем с помощью консрукции Exclude<K, 'type'>
+};
 
-// const withoutType: WithNoTypeField<User> = { // ts не трубует наличие поля 'type', потому что мы его убрали
-//     id: 34,
-//     name: 'dfd'
-// }
+const withoutType: WithNoTypeField<User> = { // ts не трубует наличие поля 'type', потому что мы его убрали
+    id: 34,
+    name: 'dfd'
+}
+
+
+
+
+// PICK - собираем поля из конкретного типа
+interface User {
+    name: string;
+    age: number;
+    type: string;
+    friends: Array<string>;
+};
+
+type NewUser = Pick<User, 'friends'> // первым дженериком передаем тип из которого вытаскиваем поле, вторым дженериком - само поле. Можно и с помощью Union
+
+const arrFr: NewUser = {
+    friends: ['dsff', 'dsfsdf'],
+};
+
+
+
+// OMIT - Противополжный PICK - исключаем поля из конкретного типа
+type NewUser2 = Omit<User, 'name' | 'age' | 'type'> // первым дженериком передаем тип из которого вытаскиваем поле, вторым дженериком - само поле(моно несколько с помощью Union)
+
+const arrFr2: NewUser = {
+    friends: ['dsff', 'dsfsdf'],
+};
+
+
+// EXTRACT / EXCLUDE
+type Color = 'red' | 'green' | 'blue';
+
+type RandomColor = Exclude<Color, 'red'>; // исключаем зданный цвет из заданного типа (работает так же и с union)
+type RandomColor2 = Extract<Color, 'red'>; // исключаем все кроме заданного цвета в заданном типе (работает так же и с union
+
+
+
+
+
+
+// RETURNTYPE / PARAMETERS
+
+function fn(param1: string, param2: string): string {
+    return '';
+};
+
+type ReturnFuncType = ReturnType<typeof fn> // RETURNTYPE - Используем когда хотим получить тип возвращаемого значения из функции
+type ReturnParams = Parameters<typeof fn>  // PARAMETERS - получаем тип аргументов
+
+
+// RECORD -  Record<K, T> - Создаёт тип объекта с ключами K и значениями T
+
+type Color = 'red' | 'green' | 'blue';
+
+const obj1: Record<Color, string[]> = { // можно испольщовть в свёзке с Partial, Чтобы сдеоать поля опциональными
+    red: ['sdf'],
+    green: ['sf'],
+    blue: ['dsf']
+};
+*/
+
+
+
+
+
