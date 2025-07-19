@@ -5406,3 +5406,57 @@ const obj1: Record<Color, string[]> = { // можно испольщовть в 
 
 
 
+
+
+
+// ASSERTS
+
+// function assertToNull(params: unknown): asserts params {
+//     if (params === null || params === undefined) {
+//     }
+//     try {
+        
+//     } catch (error) {
+//         throw new Error('Params is null or undefined')
+        
+//     }
+// };
+
+// assertToNull(null);
+
+
+
+// type User = {
+//     name: string;
+//     age: number;
+// };
+
+// function assertIsUser(params: any): asserts params is User {
+//     if (typeof params !== 'object' || params === null) {
+//         throw new Error('Object expected! Params must be object')
+//     }
+//     if (typeof params.name !== 'string') {
+//         throw new Error('Property name must be a string type')
+//     }
+//     if (typeof params.age !== 'number') {
+//         throw new Error('Property age must be a number type')
+//     }
+// };
+
+// function prepareUser(object: User) {
+//     console.log(object);
+// }
+
+// const obj1 = {
+//     name: 'Alex',
+// };
+
+// prepareUser(obj1);
+
+
+
+
+
+
+// Перегрузка функций
+

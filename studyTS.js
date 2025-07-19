@@ -108,17 +108,22 @@
 // }
 // console.log(multiplyNumbersFromRange(1,3));
 "";
-var obj1 = {
-    name: 'sdf',
-    age: 23,
-};
-// type UserKeyOfType = keyof typeof obj1; // 'name' | 'age';
-// const objAge: UserKeyOfType = 'age';
-// const objName: UserKeyOfType = 'name';
-// type UserTypeOfKey = typeof obj1[keyof typeof obj1]; // string | number
-// const asd: UserTypeOfKey = 'sdfsdg'; // тип может быть string | number
-// const asd1: UserTypeOfKey = 234;// тип может быть string | number
-function getValByKey(object, key) {
-    console.log(object[key]);
+function assertIsUser(params) {
+    if (typeof params !== 'object' || params === null) {
+        throw new Error('Object expected! Params must be object');
+    }
+    if (typeof params.name !== 'string') {
+        throw new Error('Property name must be a string type');
+    }
+    if (typeof params.age !== 'number') {
+        throw new Error('Property age must be a number type');
+    }
 }
-getValByKey(obj1, 'name');
+;
+function assertToNull(params) {
+    if (params === null || params === undefined) {
+        throw new Error('Params is null or undefined');
+    }
+}
+;
+assertToNull(null);
