@@ -108,22 +108,24 @@
 // }
 // console.log(multiplyNumbersFromRange(1,3));
 "";
-function assertIsUser(params) {
-    if (typeof params !== 'object' || params === null) {
-        throw new Error('Object expected! Params must be object');
+function log(message, level) {
+    if (level === void 0) { level = 'info'; }
+    console.log("[".concat(level.toUpperCase(), "]: ").concat(message));
+}
+function func(value) {
+    if (typeof value === 'string') {
+        return value.toUpperCase();
     }
-    if (typeof params.name !== 'string') {
-        throw new Error('Property name must be a string type');
+    return value * 2;
+}
+function stringOrNumber(params) {
+    if (typeof params === 'string') {
+        return params.toUpperCase();
     }
-    if (typeof params.age !== 'number') {
-        throw new Error('Property age must be a number type');
+    if (typeof params === 'number') {
+        return params * 100;
     }
+    throw new Error("Invalid argument");
 }
 ;
-function assertToNull(params) {
-    if (params === null || params === undefined) {
-        throw new Error('Params is null or undefined');
-    }
-}
-;
-assertToNull(null);
+console.log(stringOrNumber(23));

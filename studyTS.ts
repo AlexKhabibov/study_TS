@@ -5415,10 +5415,10 @@ const obj1: Record<Color, string[]> = { // можно испольщовть в 
 //     if (params === null || params === undefined) {
 //     }
 //     try {
-        
+
 //     } catch (error) {
 //         throw new Error('Params is null or undefined')
-        
+
 //     }
 // };
 
@@ -5457,6 +5457,35 @@ const obj1: Record<Color, string[]> = { // можно испольщовть в 
 
 
 
-
+/*
 // Перегрузка функций
 
+function log(message: string): void;                                            // перегрузка 1
+function log(message: string, level: 'info' | 'warn' | 'error'): void;          // перегрузка 2
+function log(message: string, level: 'info' | 'warn' | 'error' = 'info') {      // реализация (учитывая все варианты в одной реализации)
+    console.log(`[${level.toUpperCase()}]: ${message}`);
+}
+
+
+function func(value: string): string;                        // перегрузка 1
+function func(value: number): number;                        // перегрузка 2
+function func(value: string | number): string | number {     // реализация (учитывая все варианты в одной реализации)
+    if (typeof value === 'string') {
+        return value.toUpperCase();
+    }
+    return value * 2;
+}
+
+
+function stringOrNumber(params: string): string;                                      // перегрузка 1
+function stringOrNumber(params: number): number;                                      // перегрузка 2
+function stringOrNumber(params: string | number): string | number {       // реализация (учитывая все варианты в одной реализации)
+    if (typeof params === 'string') {
+        return params.toUpperCase();
+    }
+    if (typeof params === 'number') {
+        return params * 100;
+    }
+    throw new Error("Invalid argument");
+};
+*/
