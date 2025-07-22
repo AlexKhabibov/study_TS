@@ -5314,6 +5314,12 @@ func({
 // const arr: ArrayAnalogType<number> = [23, 23, 23];
 
 
+
+
+
+
+
+
 /*
 // УТИЛИТАРНЫЕ ТИПЫ
 
@@ -5346,6 +5352,10 @@ const withoutType: WithNoTypeField<User> = { // ts не трубует нали�
 
 
 
+
+
+
+
 // PICK - собираем поля из конкретного типа
 interface User {
     name: string;
@@ -5362,6 +5372,10 @@ const arrFr: NewUser = {
 
 
 
+
+
+
+
 // OMIT - Противополжный PICK - исключаем поля из конкретного типа
 type NewUser2 = Omit<User, 'name' | 'age' | 'type'> // первым дженериком передаем тип из которого вытаскиваем поле, вторым дженериком - само поле(моно несколько с помощью Union)
 
@@ -5370,11 +5384,20 @@ const arrFr2: NewUser = {
 };
 
 
+
+
+
+
+
 // EXTRACT / EXCLUDE
 type Color = 'red' | 'green' | 'blue';
 
 type RandomColor = Exclude<Color, 'red'>; // исключаем зданный цвет из заданного типа (работает так же и с union)
 type RandomColor2 = Extract<Color, 'red'>; // исключаем все кроме заданного цвета в заданном типе (работает так же и с union
+
+
+
+
 
 
 
@@ -5401,6 +5424,8 @@ const obj1: Record<Color, string[]> = { // можно испольщовть в 
     blue: ['dsf']
 };
 */
+
+
 
 
 
@@ -5457,6 +5482,8 @@ const obj1: Record<Color, string[]> = { // можно испольщовть в 
 
 
 
+
+
 /*
 // Перегрузка функций
 
@@ -5488,4 +5515,32 @@ function stringOrNumber(params: string | number): string | number {       // р�
     }
     throw new Error("Invalid argument");
 };
+*/
+
+
+
+
+
+
+
+/*
+// INFER
+
+function fn(param1: string, param2: number): string {
+    return '';
+};
+
+type MyParameters<T extends (...args: any) => any> = T extends (...args: infer U) => any ? U : never; // вытасктваем аргументы с помощью infer и испольщуем их для вывода
+type MyRertutnType<T extends (...args: any) => any> = T extends (...args: any) => infer U ? U : never; // тоже самое, только теперь вытасктваем возвращаемое фукцией значение с помощью infer и испольщуем для вывода
+
+
+type FnArg = MyParameters<typeof fn>; // [string , number]
+type FnArg2 = MyRertutnType<typeof fn>; // string
+
+
+
+type ElementType<T> = T extends (infer U)[] ? U : never;
+
+type A = ElementType<string[]>;  // string
+type B = ElementType<number[]>;  // number
 */
