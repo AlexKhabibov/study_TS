@@ -5316,6 +5316,24 @@ func({
 
 
 
+// type User = {
+//     name: string;
+//     age: number;
+// };
+
+// type OptionalType<T> = {
+//     readonly [K in keyof T]: T[K]; // [K in keyof T] — маппинг по ключам, T[K] — сохраняет оригинальный тип значений
+// };
+
+// type ReadOnlyType = OptionalType<User>;
+
+// const obj1: ReadOnlyType = {
+//     name: 'alex',
+//     age: 34
+// };
+
+// obj1.age = 34; // ошибка перещаписи, так как поле readonly
+
 
 
 
@@ -5401,9 +5419,6 @@ type RandomColor2 = Extract<Color, 'red'>; // исключаем все кром
 
 
 
-
-
-
 // RETURNTYPE / PARAMETERS
 
 function fn(param1: string, param2: string): string {
@@ -5424,7 +5439,42 @@ const obj1: Record<Color, string[]> = { // можно испольщовть в 
     blue: ['dsf']
 };
 */
+/**
+ * 
+type User = {
+    name: string;
+    age: number;
+    address: string;
+    isAdmin: boolean;
+    isRegistred: boolean;
+};
 
+function fn(params: number): number {
+    return params;
+}
+
+type PartialUser = Partial<User>; // делаем все поля необязательными
+type PickUser = Pick<User, 'name'>; // выбираем только одно заданное поле из заданного типа
+type OmitUser = Omit<User, 'name'>; // выбираем все поля, кроме одного заданного поля из заданного типа
+type ReturnTypeFunc = ReturnType<typeof fn>; // Получаем тип возвращаемого значения функции (cипольщуем в связке с typeof)
+
+
+const userOptional1: PartialUser = {
+    name: 'Alex',
+};
+
+const userOptional2: PickUser = {
+    name: 'Alex',
+};
+
+const userOptional3: OmitUser = {
+    age: 34,
+    address: 'Yalta',
+    isAdmin: false,
+    isRegistred: false,
+};
+
+ */
 
 
 
@@ -5482,6 +5532,14 @@ const obj1: Record<Color, string[]> = { // можно испольщовть в 
 
 
 
+// function assertsAsString(params: unknown): asserts params is string {
+//     if (typeof params !== 'string') throw new Error("type must be a string");
+// };
+
+// assertsAsString(34);
+
+
+
 
 
 /*
@@ -5515,6 +5573,28 @@ function stringOrNumber(params: string | number): string | number {       // р�
     }
     throw new Error("Invalid argument");
 };
+
+
+
+
+
+// function fn(params: string): string;
+// function fn(params: number): number;
+// function fn(params: string | number): string | number | undefined {
+//     if (typeof params === 'string') {
+//         return params;
+//     }
+//     if (typeof params === 'number') {
+//         return params;
+//     }
+//     if (typeof params === 'undefined') {
+//         throw new Error("params must not be undefined or null");
+//     }
+// };
+
+// fn('sdfsd');
+// fn('sdfsd')
+// fn(undefined);
 */
 
 
@@ -5543,4 +5623,17 @@ type ElementType<T> = T extends (infer U)[] ? U : never;
 
 type A = ElementType<string[]>;  // string
 type B = ElementType<number[]>;  // number
+
+
+
+
+
+
+
+// type IsBoolean<T> = T extends boolean ? true : false;
+// const checkBool1: IsBoolean<boolean> = true;
+// const checkBool2: IsBoolean<number> = false;
 */
+
+
+

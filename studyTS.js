@@ -108,24 +108,3 @@
 // }
 // console.log(multiplyNumbersFromRange(1,3));
 "";
-function log(message, level) {
-    if (level === void 0) { level = 'info'; }
-    console.log("[".concat(level.toUpperCase(), "]: ").concat(message));
-}
-function func(value) {
-    if (typeof value === 'string') {
-        return value.toUpperCase();
-    }
-    return value * 2;
-}
-function stringOrNumber(params) {
-    if (typeof params === 'string') {
-        return params.toUpperCase();
-    }
-    if (typeof params === 'number') {
-        return params * 100;
-    }
-    throw new Error("Invalid argument");
-}
-;
-console.log(stringOrNumber(23));
